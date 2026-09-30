@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Handly – Book trusted services near you</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#FAF7F2;--card:#fff;--ink:#1E2340;--mute:#6B6F85;--line:#E7E2D9;--acc:#F0A030;--acc-ink:#1E2340;--ok:#1F8A5B;--pri:#1E2340;--pri-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141830;--card:#1E2340;--ink:#F3EFE8;--mute:#9EA3BD;--line:#2F355A;--pri:#F0A030;--pri-ink:#1E2340}}
+:root[data-theme="dark"]{--bg:#141830;--card:#1E2340;--ink:#F3EFE8;--mute:#9EA3BD;--line:#2F355A;--pri:#F0A030;--pri-ink:#1E2340}
+*{box-sizing:border-box;margin:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;display:flex;justify-content:center;min-height:100vh}
+#app{width:100%;max-width:440px;min-height:100vh;display:flex;flex-direction:column;position:relative}
+main{flex:1;padding:16px 16px 90px;overflow-x:hidden}
+h1{font-size:28px;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+h2{font-size:18px;font-weight:600;margin:20px 0 10px}
+p,.mute{color:var(--mute);font-size:14px;line-height:1.45}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.row{display:flex;align-items:center;gap:12px}
+.sp{justify-content:space-between}
+.search{width:100%;padding:13px 16px;border-radius:14px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;margin-top:14px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 2px;scrollbar-width:none}
+.chip{flex:none;padding:8px 14px;border-radius:99px;border:1px solid var(--line);background:var(--card);font-size:14px}
+.chip.on{background:var(--pri);color:var(--pri-ink);border-color:var(--pri)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:10px;width:100%;text-align:left;display:block}
+.av{width:48px;height:48px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:800;color:#fff}
+.vf{color:var(--ok);font-size:13px;font-weight:600}
+.btn{width:100%;padding:14px;border-radius:14px;background:var(--pri);color:var(--pri-ink);font-weight:600;text-align:center}
+.btn.alt{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.price{font-weight:800}
+nav{position:fixed;bottom:0;width:100%;max-width:440px;display:flex;background:var(--card);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+nav button{flex:1;padding:8px 2px;font-size:12px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:2px}
+nav button.on{color:var(--ink);font-weight:600}
+nav button.on .ic{background:var(--acc)}
+.ic{width:36px;height:24px;border-radius:12px;display:grid;place-items:center;font-size:15px}
+.back{padding:6px 0 12px;color:var(--mute);font-size:14px}
+.bubble{max-width:80%;padding:10px 13px;border-radius:16px;margin:6px 0;font-size:14px;line-height:1.4}
+.me{background:var(--pri);color:var(--pri-ink);margin-left:auto;border-bottom-right-radius:4px}
+.them{background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.reel{height:60vh;min-height:360px;border-radius:20px;margin-bottom:14px;padding:16px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;position:relative;background-size:cover}
+.reel .side{position:absolute;right:14px;bottom:80px;display:flex;flex-direction:column;gap:14px;align-items:center;font-size:13px}
+.play{position:absolute;inset:0;display:grid;place-items:center;font-size:44px;opacity:.85}
+.stat{font-size:30px;font-weight:800}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:11px 18px;border-radius:99px;font-size:14px;z-index:9}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs .chip{flex:1;text-align:center}
+.ok{color:var(--ok);font-weight:600}
+</style>
+</head>
+<body>
+<div id="app"><main id="v"></main><a href="index.html" style="position:fixed;top:8px;right:12px;font-size:13px;color:var(--mute);z-index:5">Home page</a>
+<nav id="nav"></nav></div>
+<script>
+var P=[
+{n:"Amina Wanjiru",r:"Maths & Science Tutor",c:"Tutors",p:900,u:"hr",s:4.9,k:127,a:"Westlands",col:"#C2571A",b:"KCSE and IGCSE tutor with 8 years of experience. Home visits or online.",sv:["1-on-1 lesson (1 hr)","Exam revision pack","Group class (max 5)"]},
+{n:"Brian Otieno",r:"Electrician & Solar Technician",c:"Technicians",p:1500,u:"visit",s:4.8,k:89,a:"Kilimani",col:"#2C6E91",b:"Wiring, fault repair and solar installs. Licensed and insured.",sv:["Fault call-out","Socket & lighting install","Solar consultation"]},
+{n:"Grace Muthoni",r:"Home & Laundry Cleaning",c:"Cleaners",p:2500,u:"clean",s:4.7,k:203,a:"Lavington",col:"#1F8A5B",b:"Deep cleaning, laundry pickup and delivery. Team of 4.",sv:["Standard clean","Deep clean","Laundry pickup (per bag)"]},
+{n:"Kevin 'KayJay' Mwangi",r:"Live Guitarist & Wedding Band",c:"Musicians",p:8000,u:"gig",s:5.0,k:41,a:"Nairobi CBD",col:"#7B3FA0",b:"Acoustic sets, weddings and corporate events. Sample reels on my profile.",sv:["Solo set (2 hrs)","Full band (3 hrs)","Song request session"]},
+{n:"Dr. Faith Achieng",r:"Family Physician (verified licence)",c:"Doctors",p:3000,u:"session",s:4.9,k:76,a:"Online",col:"#B0344B",b:"Video consultations and prescriptions. KMPDC-registered.",sv:["Video consult (30 min)","Follow-up","Health check review"]},
+{n:"Peter Kamau",r:"Pro Gamer & Coach",c:"Gamers",p:600,u:"hr",s:4.8,k:158,a:"Online",col:"#3B6BD6",b:"Top-100 FC and Call of Duty coach. Rank up with me.",sv:["Coaching (1 hr)","Duo queue session","Gameplay review"]}];
+var CATS=["All","Tutors","Technicians","Cleaners","Musicians","Doctors","Gamers"];
+var st={tab:"home",cat:"All",pv:null,book:null,chat:null,jt:"Upcoming"};
+var nav=[["home","⌂","Home"],["feed","▶","Reels"],["chat","✉","Chat"],["jobs","☰","My jobs"],["net","◎","Network"]];
+var $=function(id){return document.getElementById(id)};
+function ini(n){return n.replace(/[^A-Za-z ]/g,"").split(" ").slice(0,2).map(function(x){return x[0]}).join("")}
+function av(p){return '<div class="av" style="background:'+p.col+'">'+ini(p.n)+'</div>'}
+function toast(t){var e=document.createElement("div");e.className="toast";e.textContent=t;document.body.appendChild(e);setTimeout(function(){e.remove()},2200)}
+function go(t){st.tab=t;st.pv=null;st.book=null;st.chat=null;render()}
+function card(i){var p=P[i];return '<button class="card row" onclick="st.pv='+i+';render()">'+av(p)+'<div style="flex:1"><b>'+p.n+'</b><div class="mute">'+p.r+'</div><div class="mute">★ '+p.s+' ('+p.k+') · '+p.a+'</div></div><div class="price">KES '+p.p.toLocaleString()+'</div></button>'}
+function home(){var h='<h1>Find someone you can trust.</h1><p style="margin-top:6px">Book verified people for any service, in Nairobi.</p><input class="search" placeholder="Search tutors, technicians, doctors…" aria-label="Search"><div class="chips" style="margin-top:12px">'+CATS.map(function(c){return '<button class="chip'+(c==st.cat?' on':'')+'" onclick="st.cat=\''+c+'\';render()">'+c+'</button>'}).join("")+'</div><h2>Near you</h2>';
+P.forEach(function(p,i){if(st.cat=="All"||p.c==st.cat)h+=card(i)});return h}
+function prof(){var p=P[st.pv];return '<button class="back" onclick="st.pv=null;render()">‹ Back</button><div class="row">'+av(p)+'<div><h1 style="font-size:22px">'+p.n+'</h1><div class="vf">✓ ID verified</div></div></div><p style="margin:12px 0">'+p.b+'</p><div class="row sp"><div><div class="stat">'+p.s+'</div><div class="mute">'+p.k+' reviews</div></div><div><div class="stat">'+p.p.toLocaleString()+'</div><div class="mute">KES from</div></div></div><h2>Services</h2>'+p.sv.map(function(s,j){return '<div class="card row sp"><span>'+s+'</span><span class="price">KES '+Math.round(p.p*(1+j*.4)/50)*50+'</span></div>'}).join("")+'<h2>Latest review</h2><div class="card"><b>★★★★★</b><p>Showed up on time and did exactly what was promised. Booked again the next week.</p></div><div class="row" style="margin-top:6px"><button class="btn alt" onclick="st.chat=st.pv;st.tab=\'chat\';st.pv=null;render()">Message</button><button class="btn" onclick="st.book={i:st.pv,d:1,t:1,m:0};render()">Book now</button></div>'}
+function booking(){var p=P[st.book.i],b=st.book,D=["Today","Tomorrow","Fri","Sat","Sun"],T=["9:00","11:00","14:00","16:00"],M=["In person","Online"];
+function chips(a,k){return '<div class="chips">'+a.map(function(x,j){return '<button class="chip'+(j==b[k]?' on':'')+'" onclick="st.book.'+k+'='+j+';render()">'+x+'</button>'}).join("")+'</div>'}
+var fee=Math.round(p.p*.1);
+return '<button class="back" onclick="st.book=null;st.pv='+b.i+';render()">‹ Back</button><h1 style="font-size:24px">Book '+p.n.split(" ")[0]+'</h1><h2>Day</h2>'+chips(D,"d")+'<h2>Time</h2>'+chips(T,"t")+'<h2>How</h2>'+chips(M,"m")+'<h2>Summary</h2><div class="card"><div class="row sp"><span>'+p.sv[0]+'</span><span>KES '+p.p.toLocaleString()+'</span></div><div class="row sp mute"><span>Handly service fee</span><span>KES '+fee+'</span></div><hr style="border:0;border-top:1px solid var(--line);margin:10px 0"><div class="row sp price"><span>Total</span><span>KES '+(p.p+fee).toLocaleString()+'</span></div></div><p style="margin:0 0 12px">Your money is held safely and only released after the service is done.</p><button class="btn" onclick="toast(\'Booked! Pay with M-Pesa prompt sent.\');go(\'jobs\')">Pay with M-Pesa</button>'}
+function chat(){if(st.chat!==null){var p=P[st.chat];return '<button class="back" onclick="st.chat=null;render()">‹ Chats</button><div class="row" style="margin-bottom:10px">'+av(p)+'<b>'+p.n+'</b></div><div id="msgs"><div class="bubble them">Hi! Thanks for reaching out. How can I help?</div><div class="bubble me">Are you free this Saturday morning?</div><div class="bubble them">Yes, 9:00 works. Book a slot and I will confirm.</div></div><div class="row" style="margin-top:14px"><input id="mi" class="search" style="margin:0" placeholder="Type a message" aria-label="Message"><button class="btn" style="width:auto;padding:13px 18px" onclick="send()">Send</button></div>'}
+return '<h1>Chats</h1><div style="height:12px"></div>'+P.slice(0,4).map(function(p,i){return '<button class="card row" onclick="st.chat='+i+';render()">'+av(p)+'<div style="flex:1"><b>'+p.n+'</b><div class="mute">Sounds good, see you then.</div></div><span class="mute">2m</span></button>'}).join("")}
+function send(){var v=$("mi").value.trim();if(!v)return;$("msgs").insertAdjacentHTML("beforeend",'<div class="bubble me"></div>');$("msgs").lastChild.textContent=v;$("mi").value=""}
+function feed(){var g=["#C2571A,#F0A030","#2C6E91,#1E2340","#7B3FA0,#B0344B","#1F8A5B,#2C6E91"],t=["Fixing a solar inverter in 60 seconds","Acoustic cover from last Saturday's wedding","Before and after: deep clean in Kilimani","Rank-up tips: how I coach in 1 hour"];
+return '<h1>Reels</h1><p style="margin-bottom:12px">See the work before you book.</p>'+t.map(function(x,i){var p=P[[1,3,2,5][i]];return '<div class="reel" style="background:linear-gradient(160deg,'+g[i]+')"><div class="play">▶</div><div class="side"><button onclick="toast(\'Liked\')" style="color:#fff">♥<br>1.2k</button><button onclick="st.pv='+[1,3,2,5][i]+';st.tab=\'home\';render()" style="color:#fff">＋<br>Book</button></div><b>'+x+'</b><span style="font-size:14px">@'+p.n.split(" ")[0].toLowerCase()+' · '+p.r+'</span></div>'}).join("")}
+function jobs(){var up=st.jt=="Upcoming";return '<h1>My jobs</h1><div class="card row sp" style="margin-top:12px"><div><div class="mute">Earned this month</div><div class="stat">KES 48,500</div></div><span class="ok">+12%</span></div><div class="tabs">'+["Upcoming","Past"].map(function(x){return '<button class="chip'+(x==st.jt?' on':'')+'" onclick="st.jt=\''+x+'\';render()">'+x+'</button>'}).join("")+'</div>'+(up?'<div class="card"><b>Maths lesson · Amina</b><div class="mute">Tomorrow 11:00 · Westlands</div><div class="ok">Paid, held safely</div></div><div class="card"><b>Solar consultation · Brian</b><div class="mute">Sat 9:00 · Kilimani</div><div class="ok">Paid, held safely</div></div>':'<div class="card"><b>Deep clean · Grace</b><div class="mute">Completed last week</div><div>★★★★★ You reviewed</div></div><div class="card"><b>Coaching · Peter</b><div class="mute">Completed 2 weeks ago</div><button class="chip" onclick="toast(\'Review sent\')" style="margin-top:8px">Leave a review</button></div>')}
+function net(){var o=[["Sarah N.","Hiring: 3 event musicians, Nairobi, June"],["Tech Fix Ltd","Needs 2 solar technicians, contract, Mombasa"],["Dr. Otieno","Looking for a private finance mentor for my clinic"]];
+return '<h1>Network</h1><p style="margin:6px 0 12px">Meet people. Post or find work, worldwide.</p>'+o.map(function(x,i){return '<div class="card"><div class="row sp"><b>'+x[0]+'</b><button class="chip" id="c'+i+'" onclick="this.textContent=\'Requested\';this.classList.add(\'on\')">Connect</button></div><p style="margin-top:6px;color:var(--ink)">'+x[1]+'</p></div>'}).join("")+'<button class="btn" onclick="toast(\'Opportunity posted\')" style="margin-top:6px">Post an opportunity</button>'}
+function render(){$("nav").innerHTML=nav.map(function(n){return '<button class="'+(st.tab==n[0]?'on':'')+'" onclick="go(\''+n[0]+'\')"><span class="ic">'+n[1]+'</span>'+n[2]+'</button>'}).join("");
+var h=st.book?booking():st.pv!==null?prof():st.tab=="home"?home():st.tab=="feed"?feed():st.tab=="chat"?chat():st.tab=="jobs"?jobs():net();$("v").innerHTML=h;window.scrollTo(0,0)}
+render();
+</script>
+</body>
+</html>

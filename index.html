@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Handly – Book anyone. Work anywhere.</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#FBF6EE;--ink:#1B1F3B;--mute:#5F6380;--card:#fff;--line:#E8DFD0;--acc:#F2A33A;--pink:#E8556D;--teal:#1FA38A;--blue:#3D5AFE;--hero:#1B1F3B;--hero-ink:#FBF6EE;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12152B;--ink:#F5EFE4;--mute:#A4A8C4;--card:#1B1F3B;--line:#2E3358;--hero:#0B0D1E}}
+:root[data-theme="dark"]{--bg:#12152B;--ink:#F5EFE4;--mute:#A4A8C4;--card:#1B1F3B;--line:#2E3358;--hero:#0B0D1E}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.5;overflow-x:hidden}
+.w{max-width:1000px;margin:0 auto;padding:0 20px}
+h1{font-size:clamp(38px,9vw,72px);font-weight:800;line-height:1;letter-spacing:-.03em}
+h2{font-size:clamp(26px,6vw,40px);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:10px}
+p{color:var(--mute)}
+a{color:inherit}
+section{padding:56px 0}
+.btn{display:inline-block;padding:14px 26px;border-radius:99px;background:var(--acc);color:#1B1F3B;font-weight:800;text-decoration:none;border:0;font:inherit;font-weight:800;cursor:pointer}
+.btn.o{background:transparent;color:inherit;border:2px solid currentColor}
+.btn:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
+.hero{background:var(--hero);color:var(--hero-ink);position:relative;overflow:hidden;padding:24px 0 80px;border-radius:0 0 48px 48px}
+.hero p{color:#C9CCE4;font-size:18px;max-width:520px;margin:18px 0 26px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:56px;position:relative;z-index:2}
+.logo{font-weight:800;font-size:26px;letter-spacing:-.03em}
+.logo span{color:var(--acc)}
+.blob{position:absolute;border-radius:50%;filter:blur(2px);opacity:.9}
+.b1{width:260px;height:260px;background:var(--pink);right:-70px;top:60px}
+.b2{width:150px;height:150px;background:var(--teal);right:120px;bottom:-40px}
+.b3{width:90px;height:90px;background:var(--acc);left:-30px;bottom:40px}
+.tri{position:absolute;right:40px;top:20px;width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:70px solid var(--blue);transform:rotate(18deg)}
+.hero .w{position:relative;z-index:2}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
+.pill{padding:6px 14px;border-radius:99px;background:rgba(255,255,255,.12);font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-top:24px}
+.cat{border-radius:24px;padding:20px 16px;min-height:120px;display:flex;flex-direction:column;justify-content:space-between;color:#1B1F3B;font-weight:600}
+.cat i{font-size:34px;font-style:normal}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:24px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:24px}
+.step b{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--acc);color:#1B1F3B;margin-bottom:12px}
+.tl{margin-top:28px;border-left:4px solid var(--line);padding-left:22px}
+.ph{position:relative;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;margin-bottom:18px}
+.ph:before{content:"";position:absolute;left:-35px;top:26px;width:20px;height:20px;border-radius:50%;background:var(--c);border:4px solid var(--bg)}
+.ph h3{font-size:20px}
+.ph .m{font-size:14px;font-weight:600;color:var(--c);margin-bottom:6px}
+.ph ul{padding-left:18px;color:var(--mute);font-size:15px}
+.band{background:var(--hero);color:var(--hero-ink);border-radius:40px;padding:40px 24px;position:relative;overflow:hidden}
+.band p{color:#C9CCE4}
+form{display:grid;gap:12px;margin-top:20px;max-width:520px;position:relative;z-index:2}
+label{font-size:14px;font-weight:600}
+input,select{width:100%;padding:13px 16px;border-radius:14px;border:2px solid transparent;font:inherit;background:#fff;color:#1B1F3B;margin-top:4px}
+.ok{display:none;padding:18px;border-radius:18px;background:var(--teal);color:#fff;font-weight:600;margin-top:16px;position:relative;z-index:2}
+.note{font-size:13px;margin-top:16px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.tab{padding:9px 16px;border-radius:99px;border:2px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.tab[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.phone{max-width:330px;margin:0 auto;background:var(--card);border:8px solid var(--ink);border-radius:36px;padding:18px;min-height:420px}
+.phone h3{margin-bottom:10px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.big{font-size:32px;font-weight:800}
+.vid{height:190px;border-radius:20px;background:linear-gradient(150deg,var(--pink),var(--blue));display:grid;place-items:center;color:#fff;font-size:14px;position:relative}
+.vid i{position:absolute;right:10px;bottom:10px;width:60px;height:80px;border-radius:12px;background:var(--acc)}
+.mini{display:inline-block;padding:4px 10px;border-radius:99px;background:var(--teal);color:#fff;font-size:12px;font-weight:600}
+#adm{display:none}#adm .step{overflow-x:auto}
+footer{padding:40px 0 60px;text-align:center;font-size:14px;color:var(--mute)}
+@media (prefers-reduced-motion:no-preference){.b1{animation:fl 8s ease-in-out infinite alternate}@keyframes fl{to{transform:translateY(26px)}}}
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="tri"></div>
+<div class="w">
+<div class="top"><div class="logo">handly<span>.</span></div><a class="btn o" href="#join" style="padding:9px 18px">Join</a></div>
+<h1>Book anyone.<br>Work anywhere.</h1>
+<p>Handly connects people who need a service with skilled people ready to do it: tutors, doctors, technicians, musicians, gamers and more. In your city or online, anywhere in the world.</p>
+<a class="btn" href="#join">Get early access</a> <a class="btn o" href="app.html" style="margin-left:6px">Try the app preview</a>
+<div class="pills"><span class="pill">Verified profiles</span><span class="pill">Payment held until done</span><span class="pill">Chat and video reels</span><span class="pill">Local currency and language</span></div>
+</div>
+</header>
+
+<section><div class="w">
+<h2>Every skill has a home here.</h2>
+<p>Independent professionals set their own prices. Clients book in minutes.</p>
+<div class="grid" id="cats"></div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+<h2>How it works</h2>
+<div class="steps">
+<div class="step"><b>1</b><h3>Find</h3><p>Search by service, place or rating. Watch short reels of real work.</p></div>
+<div class="step"><b>2</b><h3>Book and chat</h3><p>Pick a time, message the provider, and pay safely inside the app.</p></div>
+<div class="step"><b>3</b><h3>Review and grow</h3><p>Providers build a reputation and a network that leads to more work.</p></div>
+</div>
+</div></section>
+
+<section style="padding-top:0"><div class="w">
+<h2>Inside the app</h2>
+<p>A look at four more screens.</p>
+<div class="tabs" role="tablist" id="tabs"></div>
+<div class="phone" id="ph" role="tabpanel"></div>
+</div></section>
+
+<section id="road" style="padding-top:0"><div class="w">
+<h2>The roadmap</h2>
+<p>From idea to a global platform, in five phases. Timings and costs are rough estimates that depend on your team and country.</p>
+<div class="tl" id="tl"></div>
+</div></section>
+
+<section id="join" style="padding-top:0"><div class="w">
+<div class="band">
+<div class="blob" style="width:200px;height:200px;background:var(--pink);right:-60px;top:-60px"></div>
+<div class="blob" style="width:110px;height:110px;background:var(--acc);right:60px;bottom:-30px"></div>
+<h2>Offer your service on Handly</h2>
+<p>Join the first 500 providers. It's free to sign up, and you choose your price.</p>
+<form id="pf">
+<label>Full name<input required name="n" autocomplete="name"></label>
+<label>Email<input required type="email" name="e" autocomplete="email"></label>
+<label>Country and city<input required name="c" placeholder="e.g. Kenya, Nairobi"></label>
+<label>Your service<select required name="s"><option value="">Choose one</option><option>Tutor or teacher</option><option>Technician</option><option>Cleaner or laundry</option><option>Musician</option><option>Doctor or therapist</option><option>Lawyer or finance adviser</option><option>Pastor or counsellor</option><option>Journalist or writer</option><option>Gamer or coach</option><option>Other</option></select></label>
+<label>Licence or portfolio link (optional)<input name="l" placeholder="Needed for doctors, lawyers, therapists"></label>
+<label>Online or in person<select name="m"><option>Both</option><option>Online only</option><option>In person only</option></select></label>
+<button class="btn" type="submit">Join as a provider</button>
+</form>
+<div class="ok" id="pok">You're on the list. We'll email you when Handly opens in your area.</div>
+<hr style="border:0;border-top:1px solid rgba(255,255,255,.2);margin:32px 0 20px">
+<h3>Just looking for a service?</h3>
+<form id="cf" style="grid-template-columns:1fr auto;align-items:end">
+<label>Email<input required type="email" name="e" autocomplete="email"></label>
+<button class="btn" type="submit">Notify me</button>
+</form>
+<div class="ok" id="cok">Thanks! We'll let you know when you can book.</div>
+<p class="note" id="msg"></p>
+</div>
+</div></section>
+<footer>Handly · Skills, booked anywhere.</footer>
+
+<script>
+var C=[["📚","Tutors","#F2A33A"],["🔧","Technicians","#8FD3F4"],["🧺","Cleaners","#9BE3B8"],["🎸","Musicians","#D9B8FF"],["🩺","Doctors","#FF9DA9"],["⚖️","Lawyers","#F5D98B"],["🧠","Therapy","#B5E3E0"],["🎮","Gamers","#A9B8FF"],["✝️","Pastors","#FFC9A3"],["📰","Journalists","#E3E3E3"],["💰","Finance","#B8E8A0"],["＋","And more","#FFD0F0"]];
+document.getElementById("cats").innerHTML=C.map(function(c){return '<div class="cat" style="background:'+c[2]+'"><i>'+c[0]+'</i>'+c[1]+'</div>'}).join("");
+var R=[["Phase 0 · Weeks 1-4","Test demand","#E8556D",["Publish this page and share it in one city","Sign up 50 providers by hand","Run bookings through WhatsApp","Goal: 100 client sign-ups and 10 paid bookings","Cost: near zero"]],
+["Phase 1 · Months 2-4","Build the MVP","#F2A33A",["Provider profiles, search, booking, chat","Payments held until the job is done (mobile money and cards)","Web app first, then iOS and Android","Cost estimate: $8k-25k with a small freelance team"]],
+["Phase 2 · Months 5-8","Trust and growth","#1FA38A",["ID and licence verification for regulated professions","Reviews from real bookings only","Reels and the portfolio feed","Add a second city"]],
+["Phase 3 · Months 9-14","Go global","#3D5AFE",["Multi-currency, multi-language, local payment methods","Follow local rules for doctors, lawyers and therapists in each country","Networking, job posts and messaging between professionals","Launch in 3-5 countries"]],
+["Phase 4 · Year 2+","Scale","#8E44AD",["Paid profile boosts and subscriptions","Teams and agencies, for example cleaning companies","Support, disputes and insurance partners","Goal: sustained monthly jobs and repeat customers"]]];
+document.getElementById("tl").innerHTML=R.map(function(r){return '<div class="ph" style="--c:'+r[2]+'"><div class="m">'+r[0]+'</div><h3>'+r[1]+'</h3><ul>'+r[3].map(function(x){return '<li>'+x+'</li>'}).join("")+'</ul></div>'}).join("");
+var SC={"Reviews":'<h3>Reviews</h3><div class="big">4.9 ★</div><p>127 verified bookings</p><div class="row"><span><b>Ana, Lisbon</b><br>Arrived on time, great work.</span><span>★★★★★</span></div><div class="row"><span><b>James, Lagos</b><br>Clear prices, no surprises.</span><span>★★★★★</span></div><div class="row"><span><b>Mei, Sydney</b><br>Booked again.</span><span>★★★★☆</span></div>',
+"Provider dashboard":'<h3>Your week</h3><div class="big">$1,240</div><p>Earned, +12% on last week</p><div class="row"><span>Mon 10:00 · Lesson</span><span class="mini">Paid</span></div><div class="row"><span>Wed 15:00 · Consult</span><span class="mini">Paid</span></div><div class="row"><span>Fri 09:00 · Session</span><span class="mini" style="background:var(--acc);color:#1B1F3B">Pending</span></div><div class="row"><span>Availability</span><span>Mon-Fri, 8-17</span></div>',
+"Video session":'<h3>Live session</h3><div class="vid">Video call<i></i></div><div class="row"><span>Dr. Achieng · 12:04</span><span class="mini">Secure</span></div><div class="row"><span>Mute · Camera · Share file</span><span>End</span></div>',
+"Booking confirmed":'<h3>You are booked</h3><div class="big">Sat 9:00</div><p>Payment is held until the job is done.</p><div class="row"><span>Service</span><span>Deep clean</span></div><div class="row"><span>Total</span><span>$48</span></div><div class="row"><span>Add to calendar</span><span>Message provider</span></div>'};
+var tb=document.getElementById("tabs"),ph=document.getElementById("ph");
+Object.keys(SC).forEach(function(k,n){var b=document.createElement("button");b.className="tab";b.textContent=k;b.setAttribute("role","tab");b.onclick=function(){[].forEach.call(tb.children,function(x){x.setAttribute("aria-selected","false")});b.setAttribute("aria-selected","true");ph.innerHTML=SC[k]};tb.appendChild(b);if(!n)b.click()});
+var ENDPOINT="PASTE_YOUR_FORM_LINK_HERE";
+function say(t){document.getElementById("msg").textContent=t}
+["pf","cf"].forEach(function(id){document.getElementById(id).addEventListener("submit",function(e){e.preventDefault();var f=this,d={type:id=="pf"?"provider":"client"};[].forEach.call(f.elements,function(x){if(x.name)d[x.name]=x.value});
+if(ENDPOINT.indexOf("http")!==0){say("Sign-up is not connected yet. The site owner needs to add the form link.");return}
+fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(d)}).then(function(r){if(!r.ok)throw 0;f.style.display="none";document.getElementById(id=="pf"?"pok":"cok").style.display="block";say("")}).catch(function(){say("Could not send. Please try again.")})})});
+</script>
+</body>
+</html>
