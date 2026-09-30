@@ -152,7 +152,7 @@ var SC={"Reviews":'<h3>Reviews</h3><div class="big">4.9 ★</div><p>127 verified
 "Booking confirmed":'<h3>You are booked</h3><div class="big">Sat 9:00</div><p>Payment is held until the job is done.</p><div class="row"><span>Service</span><span>Deep clean</span></div><div class="row"><span>Total</span><span>$48</span></div><div class="row"><span>Add to calendar</span><span>Message provider</span></div>'};
 var tb=document.getElementById("tabs"),ph=document.getElementById("ph");
 Object.keys(SC).forEach(function(k,n){var b=document.createElement("button");b.className="tab";b.textContent=k;b.setAttribute("role","tab");b.onclick=function(){[].forEach.call(tb.children,function(x){x.setAttribute("aria-selected","false")});b.setAttribute("aria-selected","true");ph.innerHTML=SC[k]};tb.appendChild(b);if(!n)b.click()});
-var ENDPOINT="PASTE_YOUR_FORM_LINK_HERE";
+var ENDPOINT="https://formspree.io/f/mbglbovv"
 function say(t){document.getElementById("msg").textContent=t}
 ["pf","cf"].forEach(function(id){document.getElementById(id).addEventListener("submit",function(e){e.preventDefault();var f=this,d={type:id=="pf"?"provider":"client"};[].forEach.call(f.elements,function(x){if(x.name)d[x.name]=x.value});
 if(ENDPOINT.indexOf("http")!==0){say("Sign-up is not connected yet. The site owner needs to add the form link.");return}
